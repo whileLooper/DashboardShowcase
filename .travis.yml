@@ -24,6 +24,6 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 3
 script:
-  - npm run ci
+  - npm run ci:travis
 after_success:
   - firebase deploy --token ${FIREBASE_TOKEN}
