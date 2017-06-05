@@ -1,7 +1,7 @@
 deploy:
   provider: firebase
   token:
-    secure: 'firebaseToken'
+    secure: 'TRIws1uiN4Bevz3Xm2bNy9xh8l1PFIzqEKkdN5Pk/vqZx865wq0aKfqLu/Y48TTXmqHGZPabfnCun+6xpAXXZZoqOne6RdInHjiO1NlAftMR8NIm4vCN/t4r56gh+5Zn+gvS0UNJCoLx6GVBB5NInnpaq6VV0oxnhSAl/db3U7W/fIN/S8W7psOJ2RoAA6eyS0xmRsWpEApI26J/OLh9MimWk/9gTVH1eyMg7+JjLBERNPiUGti/CbFExv+QUdeTEKe/Ol7RUTHQZ62PJXmyXSS9jYPLwtleCJUb84GnlwT+jnqt86dNP5p/L9lIIZiqi91HCKXIuvErwQb/UUyTsP+OqhYslrwMGpE/9DxyXu9aMHRujdAXeYHGgwNSY1AlVR63yjYv2k3n+QyAGhp77R+zvc0lAtjizP1YO/aCHg3jfmQd20jkRoKhfaYiVk9cJCzPrnSWnq7cpZnpDXG5pN7q78uwfln99IK8KWRHJRVAt6BAwl0iYGp1Wh9xUlpyPK7bpO2tckLK/7u/Bdy5jkQ/N44ijKBwm8FMKuGzYOaZDYyX0XAekXjiA1APJlk6p65VIl4SZ4P8E/t3GuEz+Ziv4qTYvDWZ743cKmSVbokn7m8aOz4Y2oRE18r3rgvDB9odyftWgvywDDPTgVgyVEqya1CmxzgCXX6Sie/KW3k='
 sudo: required
 dist: trusty
 addons:
