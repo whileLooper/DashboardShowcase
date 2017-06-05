@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "dashboardmockup"
+    "default": "dashboardmockup",
+    "mockup": "dashboardmockup"
   }
 }
