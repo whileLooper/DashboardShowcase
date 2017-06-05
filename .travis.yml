@@ -1,3 +1,7 @@
+deploy:
+  provider: firebase
+  token:
+    secure: "firebaseToken"
 sudo: required
 dist: trusty
 addons:
