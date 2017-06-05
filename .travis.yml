@@ -23,4 +23,5 @@ before_script:
 script:
   - npm run ci:travis
 after_success:
+  - firebase login:ci
   - firebase deploy --token ${FIREBASE_API_TOKEN}
