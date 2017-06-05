@@ -3,7 +3,7 @@ import { Layout } from './layout.component';
 // noinspection TypeScriptValidateTypes
 const routes: Routes = [
   { path: '', component: Layout, children: [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: '', redirectTo: 'mockup', pathMatch: 'full' },
     { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule' },
     { path: 'inbox', loadChildren: '../inbox/inbox.module#InboxModule' },
     { path: 'charts', loadChildren: '../charts/charts.module#ChartsModule' },
@@ -15,6 +15,8 @@ const routes: Routes = [
     { path: 'maps', loadChildren: '../maps/maps.module#MapsModule' },
     { path: 'grid', loadChildren: '../grid/grid.module#GridModule' },
     { path: 'widgets', loadChildren: '../widgets/widgets.module#WidgetsModule' },
+    { path: 'mockup', loadChildren: '../mockup/mockup.module#MockupModule' },
+
   ]}
 ];
 

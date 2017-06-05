@@ -34,188 +34,48 @@
       </ul>
     </li>
     <li>
-      <a [routerLink]=" ['inbox'] ">
+      <a class="collapsed" data-target="#sidebar-dashboard-2" data-toggle="collapse" data-parent="#sidebar">
           <span class="icon">
-            <i class="fa fa-envelope"></i>
+            <i class="fa fa-desktop"></i>
           </span>
-        Email
-          <span class="badge badge-danger">
-            9
-          </span>
+        <small>信息中心</small>
+        <i class="toggle fa fa-angle-down"></i>
       </a>
+      <ul id="sidebar-dashboard-2" class="collapse">
+        <li><a [routerLink]=" ['mockup'] "><small>实时数据</small></a></li>
+        <li><a ><small>预测数据</small></a></li>
+      </ul>
     </li>
-    <li>
-      <a [routerLink]=" ['charts'] ">
-          <span class="icon">
-            <i class="glyphicon glyphicon-stats"></i>
-          </span>
-        Charts
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['profile'] ">
-          <span class="icon">
-            <i class="glyphicon glyphicon-user"></i>
-          </span>
-        Profile
-        <sup class="text-warning fw-semi-bold">
-          new
-        </sup>
-      </a>
-    </li>
+
   </ul>
-  <!-- every .sidebar-nav may have a title -->
-  <h5 class="sidebar-nav-title">Template <a class="action-link" href="#"><i class="glyphicon glyphicon-refresh"></i></a></h5>
-  <ul class="sidebar-nav">
-    <li>
-      <!-- an example of nested submenu. basic bootstrap collapse component -->
-      <a class="collapsed" data-target="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="glyphicon glyphicon-align-right"></i>
-          </span>
-        Forms
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-forms" class="collapse">
-        <li><a [routerLink]=" ['forms/elements'] ">Form Elements</a></li>
-        <li><a [routerLink]=" ['forms/validation'] ">Form Validation</a></li>
-        <li><a [routerLink]=" ['forms/wizard'] ">Form Wizard</a></li>
-      </ul>
-    </li>
-    <li>
-      <a class="collapsed" data-target="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="glyphicon glyphicon-tree-conifer"></i>
-          </span>
-        UI Elements
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-ui" class="collapse">
-        <li><a [routerLink]=" ['ui/components'] ">Components</a></li>
-        <li><a [routerLink]=" ['ui/notifications'] ">Notifications</a></li>
-        <li><a [routerLink]=" ['ui/icons'] ">Icons</a></li>
-        <li><a [routerLink]=" ['ui/buttons'] ">Buttons</a></li>
-        <li><a [routerLink]=" ['ui/tabs-accordion'] ">Tabs & Accordion</a></li>
-        <li><a [routerLink]=" ['ui/list-groups'] ">List Groups</a></li>
-      </ul>
-    </li>
-    <li>
-      <a [routerLink]=" ['grid'] ">
-          <span class="icon">
-            <i class="glyphicon glyphicon-th"></i>
-          </span>
-        Grid
-      </a>
-    </li>
-    <li>
-      <a class="collapsed" data-target="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="glyphicon glyphicon-map-marker"></i>
-          </span>
-        Maps
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-maps" class="collapse">
-        <li><a [routerLink]=" ['maps/google'] ">Google Maps</a></li>
-        <li><a [routerLink]=" ['maps/vector'] ">Vector Maps</a></li>
-      </ul>
-    </li>
-    <li>
-      <!-- an example of nested submenu. basic bootstrap collapse component -->
-      <a class="collapsed" data-target="#sidebar-tables" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="fa fa-table"></i>
-          </span>
-        Tables
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-tables" class="collapse">
-        <li><a [routerLink]=" ['tables/basic'] ">Tables Basic</a></li>
-        <li><a [routerLink]=" ['tables/dynamic'] ">Tables Dynamic <sup class="bg-transparent text-danger fs-sm fw-bold">ng2</sup></a></li>
-      </ul>
-    </li>
-    <li>
-      <a class="collapsed" data-target="#sidebar-extra" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="fa fa-leaf"></i>
-          </span>
-        Extra
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-extra" class="collapse">
-        <li><a [routerLink]=" ['extra/calendar'] ">Calendar <sup class="bg-transparent text-danger fs-sm fw-bold">ng2</sup></a></li>
-        <li><a [routerLink]=" ['extra/invoice'] ">Invoice</a></li>
-        <li><a [routerLink]=" ['/login'] ">Login Page</a></li>
-        <li><a [routerLink]=" ['/error'] ">Error Page</a></li>
-        <li><a [routerLink]=" ['extra/gallery'] ">Gallery <sup class="bg-transparent text-danger fs-sm fw-bold">ng2</sup></a></li>
-        <li><a [routerLink]=" ['extra/search'] ">Search Results</a></li>
-        <li><a [routerLink]=" ['extra/timeline'] ">Time Line</a></li>
-      </ul>
-    </li>
-    <li>
-      <a class="collapsed" data-target="#sidebar-levels" data-toggle="collapse" data-parent="#sidebar">
-          <span class="icon">
-            <i class="fa fa-folder-open"></i>
-          </span>
-        Menu Levels
-        <i class="toggle fa fa-angle-down"></i>
-      </a>
-      <ul id="sidebar-levels" class="collapse">
-        <li><a href>Level 1</a></li>
-        <li>
-          <a class="collapsed" data-target="#sidebar-sub-levels" data-toggle="collapse" data-parent="#sidebar-levels">
-            Level 2
-            <i class="toggle fa fa-angle-down"></i>
-          </a>
-          <ul id="sidebar-sub-levels" class="collapse">
-            <li><a href>Level 3</a></li>
-            <li><a href>Level 3</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <h5 class="sidebar-nav-title">Labels <a class="action-link" href="#"><i class="glyphicon glyphicon-plus"></i></a></h5>
-  <!-- some styled links in sidebar. ready to use as links to email folders, projects, groups, etc -->
-  <ul class="sidebar-labels">
-    <li>
-      <a href="#">
-        <!-- yep, .circle again -->
-        <i class="fa fa-circle text-warning mr-xs"></i>
-        <span class="label-name">My Recent</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-circle text-gray mr-xs"></i>
-        <span class="label-name">Starred</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fa fa-circle text-danger mr-xs"></i>
-        <span class="label-name">Background</span>
-      </a>
-    </li>
-  </ul>
-  <h5 class="sidebar-nav-title">Projects</h5>
+
+
+
+  <h5 class="sidebar-nav-title">近期活动&会展</h5>
   <!-- A place for sidebar notifications & alerts -->
   <div class="sidebar-alerts">
     <div class="alert fade show">
       <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-      <span class="text-white fw-semi-bold">Sales Report</span> <br>
-      <div class="progress progress-xs bg-blue-light mt-xs mb-0">
+      <span class="text-white fw-semi-bold">维也纳酒店（广粤路店）</span> <br>
+      <!--<div class="progress progress-xs bg-blue-light mt-xs mb-0">
         <div class="progress-bar progress-xs" role="progressbar" style="width: 16%" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <small>Calculating x-axis bias... 65%</small>
+      </div>-->
+      <ul>
+        <li><small>2017上海国际电梯及电机配套产品展览会(2017-06-07 到 2017-06-09)</small></li>
+        <li><small>2017上海国际物流与运输系统展览会(2017-06-07 到 2017-06-09)</small></li>
+      </ul>
     </div>
     <div class="alert fade show">
       <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-      <span class="text-white fw-semi-bold">Personal Responsibility</span> <br>
-      <div class="progress progress-xs bg-blue-light mt-xs mb-0">
+      <span class="text-white fw-semi-bold">布丁酒店（浦建路店）</span> <br>
+      <!--<div class="progress progress-xs bg-blue-light mt-xs mb-0">
         <div class="progress-bar progress-xs bg-danger" role="progressbar" style="width: 23%" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <small>Provide required notes</small>
+      </div>-->
+      <ul>
+        <li><small>2017中国（上海）国际港口装备展览会(2017-06-07 到 2017-06-09)</small></li>
+        <li><small>2017亚洲消费电子展(2017-06-07 到 2017-06-09)</small></li>
+        <li><small>2017中国国际模具技术和设备展览会(2017-06-07 到 2017-06-09)</small></li>
+      </ul>
     </div>
   </div>
 </div>
