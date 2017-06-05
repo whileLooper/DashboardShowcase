@@ -1,7 +1,3 @@
-deploy:
-  provider: firebase
-  token:
-    secure: xLlNQQabxcRLwvP7etTUcysX0CYHExnBJe+MzNJTpjY8pXyooszAvTTApv5pbegc+zfvYir8295m8WSNMRY6b0pIoXhTPpIVR4Tzj0Jp0cxySeorBrSR/0H0qqD3STjhuMev4C8n9Wd4D004CzDbxz5RL3d2Rf/2bBlhI48Rty0btPSA1gn7+ifc916mJZfWqYdG8g/yEYlkCDgxvAp5TZ2HImx+O5yNj2VZl/b4doG8rgnRKnP5B7/er795Ti+GiMHKJPZeeUn/A2cL1h2yJ+1Y4oBs2YZXL3YMrFUZ08pasLSyUErW6FE+nYVp3Zl/m/z/MIfpI/SSNxnBixp5n5iylEHCUhAqMcCTsWG3nxn4B/SI+fNsabFgTrYl0DkbSVhTHo2fDaEn2Sg1oWrOqvk09F4xzuT+HEeDgNiHDBDxFAEeneWJ8pybFvK5Nfq5VRVcKOF6YkmhbuLDT36Mdr6j85MU/rRPMnOiyZfDpKL5LPa/jVOplp3GFNCiLAxTTS1YNZ1XyjsO6HBQNWMvkT701oEqb4LrDPmGGEIdb4EgtMG8kCD4uR9btcLjsiDSszhoY2sMg/quYKpS9WI++vuTFnoTT8a45KIeHyRm/UQIaXxg4RlNiYiZ+aECWrlSIBsNSGUze2oOQk6KeYJ3ECrd7ZfSm46gdS26jfxxFvA=
 sudo: required
 dist: trusty
 addons:
@@ -25,6 +21,8 @@ before_script:
   - sleep 3
 script:
   - npm run ci:travis
+after_success:
+  - firebase deploy --token "${FIREBASE_API_TOKEN}"
 env:
   global:
   - secure: TRIws1uiN4Bevz3Xm2bNy9xh8l1PFIzqEKkdN5Pk/vqZx865wq0aKfqLu/Y48TTXmqHGZPabfnCun+6xpAXXZZoqOne6RdInHjiO1NlAftMR8NIm4vCN/t4r56gh+5Zn+gvS0UNJCoLx6GVBB5NInnpaq6VV0oxnhSAl/db3U7W/fIN/S8W7psOJ2RoAA6eyS0xmRsWpEApI26J/OLh9MimWk/9gTVH1eyMg7+JjLBERNPiUGti/CbFExv+QUdeTEKe/Ol7RUTHQZ62PJXmyXSS9jYPLwtleCJUb84GnlwT+jnqt86dNP5p/L9lIIZiqi91HCKXIuvErwQb/UUyTsP+OqhYslrwMGpE/9DxyXu9aMHRujdAXeYHGgwNSY1AlVR63yjYv2k3n+QyAGhp77R+zvc0lAtjizP1YO/aCHg3jfmQd20jkRoKhfaYiVk9cJCzPrnSWnq7cpZnpDXG5pN7q78uwfln99IK8KWRHJRVAt6BAwl0iYGp1Wh9xUlpyPK7bpO2tckLK/7u/Bdy5jkQ/N44ijKBwm8FMKuGzYOaZDYyX0XAekXjiA1APJlk6p65VIl4SZ4P8E/t3GuEz+Ziv4qTYvDWZ743cKmSVbokn7m8aOz4Y2oRE18r3rgvDB9odyftWgvywDDPTgVgyVEqya1CmxzgCXX6Sie/KW3k=
