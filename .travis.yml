@@ -22,6 +22,7 @@ before_script:
 script:
   - npm run ci:travis
 after_success:
+  - firebase use mockup
   - firebase deploy --token "${FIREBASE_API_TOKEN}"
 env:
   global:
