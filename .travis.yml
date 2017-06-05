@@ -12,13 +12,13 @@ addons:
     - google-chrome-stable
 language: node_js
 node_js:
-- '6'
+  - '6'
 matrix:
   fast_finish: true
   allow_failures:
   - node_js: '4'
 install:
-- npm install
+  - npm install
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -26,6 +26,7 @@ before_script:
 script:
   - npm run ci:travis
 after_success:
+  - firebase login --reauth
   - firebase deploy --token ${FIREBASE_API_TOKEN}
 env:
   global:
