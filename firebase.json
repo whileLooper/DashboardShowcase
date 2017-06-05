@@ -1,9 +1,15 @@
-{ 
+{
   "firebase": "myfirebase",
-  "public": "dist",
-  "ignore": [
-    "firebase.json",
-    "database-rules.json",
-    "storage.rules"
-  ]
+  "hosting": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
 }
