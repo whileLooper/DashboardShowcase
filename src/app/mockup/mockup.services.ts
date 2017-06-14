@@ -35,7 +35,7 @@ export class MockupServices {
    * 实时房间详情
    */
   public getRoomsDetail() {
-    let url = 'http://pmsapi.yaduo.com:8000/api/GetMainStatus?&chainid=310006&userid=4325&shift=a&timespan=1497468250973&token=49724815cc20436f8015e61778cf7e791448353b&sign=8cab2fb387c75b1b28baad18559abe4053ff47bf&rand=726&_=1497468250908'；
+    let url = 'http://pmsapi.yaduo.com:8000/api/GetMainStatus?&chainid=310006&userid=4325&shift=a&timespan=1497468250973&token=49724815cc20436f8015e61778cf7e791448353b&sign=8cab2fb387c75b1b28baad18559abe4053ff47bf&rand=726&_=1497468250908';
 
     return this.http.get(url)
                     .map(res => res.json())
