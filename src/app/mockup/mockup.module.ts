@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MockupComponent } from './index';
 import { ChartjsModule } from '../components/chartjs/index';
 import { MockupServices } from './mockup.services';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 export const routes = [
   {path: '', component: MockupComponent, pathMatch: 'full'}
@@ -18,7 +19,8 @@ export const routes = [
   imports: [
     CommonModule,
     ChartjsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    JsonpModule
   ],
   providers: [
     MockupServices
