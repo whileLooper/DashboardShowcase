@@ -17,7 +17,6 @@ export class MockupComponent {
   ngOnInit(): void {
     this.getOverallInfo();
     this.getRoomsDetail();
-    console.log(this.overAllData);
   }
 
   public getOverallInfo() {
@@ -25,7 +24,8 @@ export class MockupComponent {
     // console.log(result);
     this._service.getOverallInfo().subscribe(
       (res: any) => {
-        this.overAllData = res.hasOwnProperty('data') ? res.data : undefined;
+        this.overAllData = res.hasOwnProperty('Data') ? res.Data : undefined;
+        console.log(this.overAllData);
       },
       (err: any) => {
         console.error('房态图，访问链接信息报错');
@@ -36,7 +36,8 @@ export class MockupComponent {
   public getRoomsDetail() {
     this._service.getRoomsDetail().subscribe(
       (res: any) => {
-        this.mainStatus = res.hasOwnProperty('data') ? res.data : undefined;
+        this.mainStatus = res.hasOwnProperty('Data') ? res.Data : undefined;
+        console.log(this.mainStatus);
       },
       (err: any) => {
         console.error('房间信息， 访问链接信息报错');
