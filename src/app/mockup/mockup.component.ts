@@ -53,7 +53,6 @@ export class MockupComponent {
     this.totalInfo['currOccupied'] = this.mainStatus.filter(e => e['CheckInState'] === 1).length;
     this.totalInfo['currEmpty'] = this.mainStatus.filter(e => e['CheckInState'] === 2).length;
     this.isLoading = false;
-    console.log(this.mainStatus);
   }
 
 }
