@@ -1,2 +1,10 @@
 <h1>秀沿路<small>（亚朵）</small></h1>
-testing
+<div class="row text-xs-center" *ngIf="!isLoading">
+    <ul>
+        <li>今日在住: {{totalInfo['currOccupied']}}</li>
+        <li>剩余房间: {{totalInfo['currEmpty']}}</li>
+        <li>今日预离: {{totalInfo['Ad_DepFolio']}}</li>
+        <li>今日预抵: {{totalInfo['Ad_FolioCount']}}</li>
+        <li>预测营收: ${{totalInfo['Ad_AllDebit']}}</li>
+    </ul>
+</div>
