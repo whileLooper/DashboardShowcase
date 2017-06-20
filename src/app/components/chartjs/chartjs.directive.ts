@@ -1,5 +1,4 @@
-import { Directive, ElementRef, Renderer, Input, OnDestroy, OnInit, OnChanges } from '@angular/core';
-//import { defaultColors } from './chartjsDefault.colors';
+import { Directive, ElementRef, Renderer, Input } from '@angular/core';
 
 import { defaultColors } from '../chart.colors';
 
@@ -14,16 +13,18 @@ declare var moment: any;
 
 export class ChartjsDirective {
   @Input() public data: any;
+  @Input() public config: any;
   @Input() public options: any = {responsive: true};
   @Input() public title: string;
   @Input() max: string;
   public labels:Array<any> = [];
-  private ctx:any;
-  private chart:any;
-  private custom_colors:Array<string>;
   public $el: any;
-
   public defaultColors: any;
+
+  private ctx: any;
+  private chart: any;
+  private custom_colors: Array<string>;
+
 
   constructor(el: ElementRef, renderer: Renderer) {
     this.$el = jQuery(el.nativeElement);
@@ -32,12 +33,6 @@ export class ChartjsDirective {
 
   ngOnInit(): void {
     this.ctx = this.$el[0].getContext('2d');
-    // get chart timeSeries and data transform into correct format
-    // if (this.data) {
-    //   let timeSeries = this.getTimeseries(this.data);
-    //   let chartDatasets = this.transformDatasets(this.data);
-    //   this.chart = this.getChartBuilder(this.ctx, timeSeries, chartDatasets);
-    // }
     this.chart = this.getChartBuilder(this.ctx);
   }
   // destroy chart component
@@ -48,16 +43,15 @@ export class ChartjsDirective {
     }
   }
   // major chart build function
-  private getChartBuilder(ctx: any): void {
-    if(this.options.colors) {
-      this.custom_colors = this.options.colors;
-    }
+  private getChartBuilder(ctx: any) {
 
+    // setting background color
+    this.config.data.datasets.backgroundColor = this.defaultColors;
 
-    let _options:any = {
+    let config = this.config ? this.config : {
       type: this.options.chartType,
-      data: this.transformDatasets(this.data),
-      options: {
+      data: this.data,
+      options: this.options ? this.options : {
         title: {
           display: true,
           position: 'top',
@@ -85,71 +79,21 @@ export class ChartjsDirective {
               }
             }
           ],
-          yAxes:[ {ticks:{
+          yAxes: [ {ticks: {
             callback: function(value) {
-              return value +"%";
+              return value + '%';
             }
           } } ]
         }
-        
       }
     };
-    if(this.options.yMax) {
-      _options.options.scales.yAxes[0].ticks.min= 70;
-      _options.options.scales.yAxes[0].ticks.max= 100;
+    if (this.options.yMax) {
+      this.config.options.scales.yAxes[0].ticks.min = 70;
+      this.config.options.scales.yAxes[0].ticks.max = 100;
     }
 
-    
-
-
-
-/*
-    //if(this.options.yMax || (this.max && Number(this.max) > 0) ) {
-
-    if(this.options.yMax) {
-      //_options.options.scales.yAxes[0].ticks.max= 100;
-    }
-*/
-    let chart = new Chart(ctx, _options);
+    let chart = new Chart(ctx, this.config);
     return chart;
-  }
-
-
-  private getTimeseries(data: any): any {
-    let result: Array<any> = [];
-    if (data) {
-      for (let i in data[0]['data']) {
-        if (data[0]['data'][i]) {
-          let temp = new Date(+data[0]['data'][i][0]);
-          result.push(temp);
-        }
-      }
-    }
-    return result;
-  }
-  private transformDatasets(data: any) {
-    let result = {
-      datasets: data.datasets,
-      labels: data.labels
-    };
-    // assgin different color to dataset
-    for (let i in data['datasets']) {
-      if (data['datasets'][i]) {
-
-        let colorIndex = parseInt(i, 10) % (this.defaultColors.length);
-        if(this.custom_colors !== undefined) {
-          colorIndex = parseInt(i, 10) % (this.custom_colors.length);
-          result['datasets'][i]['backgroundColor'] = this.custom_colors[colorIndex];
-        }
-        else {
-          result['datasets'][i]['backgroundColor'] = defaultColors[colorIndex];
-        }
-
-        //result['datasets'][i]['backgroundColor'] = defaultColors[colorIndex]['fillColor'];
-        
-      }
-    }
-    return result;
   }
 }
 

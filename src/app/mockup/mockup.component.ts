@@ -23,9 +23,11 @@ export class MockupComponent {
 
   ngOnInit(): void {
     this.getOverallInfo();
-    // this.getRoomsDetail();
   }
 
+  /**
+   * 
+   */
   public getOverallInfo() {
     // let result = this._service.getOverallInfo();
     // console.log(result);
@@ -42,6 +44,10 @@ export class MockupComponent {
     );
   }
 
+  /**
+   * update and mapping api data
+   * @param res [object]
+   */
   public updateData(res: any) {
     this.overAllData = res[0].hasOwnProperty('Data') ? res[0].Data : undefined;
     this.mainStatus = res[1].hasOwnProperty('Data') ? res[1].Data : undefined;
@@ -53,6 +59,46 @@ export class MockupComponent {
     this.totalInfo['currOccupied'] = this.mainStatus.filter(e => e['CheckInState'] === 1).length;
     this.totalInfo['currEmpty'] = this.mainStatus.filter(e => e['CheckInState'] === 2).length;
     this.isLoading = false;
+  }
+
+  /**
+   * initial donut chart configures and data
+   */
+  public initDonutChart() {
+    let config = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [
+            206,
+            1,
+            35,
+            36
+          ],
+          label: 'Dataset 1'
+        }],
+        labels: [
+          '今日在住',
+          '剩余房间',
+          '今日预离',
+          '今日预抵'
+        ]
+      },
+      options: {
+          responsive: true,
+          legend: {
+              position: 'top',
+          },
+          title: {
+              display: true,
+              text: '当前房间状态'
+          },
+          animation: {
+              animateScale: true,
+              animateRotate: true
+          }
+      }
+    };
   }
 
 }
