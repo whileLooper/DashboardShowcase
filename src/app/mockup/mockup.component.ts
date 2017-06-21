@@ -167,7 +167,7 @@ export class MockupComponent {
         },
         title: {
           display: true,
-          text: 'Chart.js Horizontal Bar Chart'
+          text: '当前各个楼层入住率'
         }
       }
     };
