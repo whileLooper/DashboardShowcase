@@ -27,7 +27,7 @@ export class MockupComponent {
     this.config = {
       donut: undefined, // 实时信息汇总
       bar: undefined,   // 实时客房入住率
-    }；
+    };
   }
 
   ngOnInit(): void {
