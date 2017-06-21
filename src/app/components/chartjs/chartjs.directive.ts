@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Renderer, Input } from '@angular/core';
 
-import { defaultColors } from '../chart.colors';
+import { arrDefaultColors } from '../chart.colors';
 
 declare var jQuery: any;
 declare var Chart: any;
@@ -28,11 +28,12 @@ export class ChartjsDirective {
 
   constructor(el: ElementRef, renderer: Renderer) {
     this.$el = jQuery(el.nativeElement);
-    this.defaultColors = defaultColors;
+    this.defaultColors = arrDefaultColors;
   }
 
   ngOnInit(): void {
     this.ctx = this.$el[0].getContext('2d');
+    this.ctx.height = 500;
     this.chart = this.getChartBuilder(this.ctx);
   }
   // destroy chart component
@@ -45,8 +46,6 @@ export class ChartjsDirective {
   // major chart build function
   private getChartBuilder(ctx: any) {
 
-    // setting background color
-    this.config.data.datasets.backgroundColor = this.defaultColors;
 
     let config = this.config ? this.config : {
       type: this.options.chartType,

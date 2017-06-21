@@ -1,10 +1,19 @@
-export const defaultColors: Array<string> = [ //1565C0
-  '#2675B4','#FFC107','#8BBA00','#FF9800','#008E8E','#DCE775',  // my...
-  '#303F9F','#6D4C41','#F06292','#C5CAE9','#B2EBF2','#C0CA33', // 800
-  '#78909C','#9575CD','#80DEEA','#81C784','#FDD835','#5C6BC0', // 600
+export const defaultColors: Array<string> = [
+  '#ef9a9a','#b39ddb','#81d4fa','#a5d6a7','#fff59d','#ffab91',  // my...
+  '#f48fb1','#9fa8da','#80deea','#c5e1a5','#ffe082','#bcaaa4', // 800
+  '#ce93d8','#90caf9','#80cbc4','#e6ee9c','#ffcc80','#eeeeee', // 600
   '#FF5252','#EEFF41','#FF8A65','#FFA726','#00897B','#00B0FF', // 1
   
 ];
+// export const defaultColors: Array<string> = [
+//   'rgb(255, 99, 132)',
+//   'rgb(255, 159, 64)',
+//   'rgb(255, 205, 86)',
+//   'rgb(75, 192, 192)',
+//   'rgb(54, 162, 235)',
+//   'rgb(153, 102, 255)',
+//   'rgb(201, 203, 207)'
+// ];
 /*
 export const defaultColors: Array<string> = [
   '#2675B4','#F6BD0F','#8BBA00','#FF8E46','#008E8E','#D64646',
