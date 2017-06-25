@@ -41,11 +41,18 @@ export class MockupComponent {
    * 
    */
   public getOverallInfo() {
-    // let result = this._service.getOverallInfo();
-    // console.log(result);
+
+    // get current month first day, and current day
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let firstDay = new Date(y, m, 1);
+    let lastDay = new Date(y, m + 1, 0);
+
+    firstDay = moment(firstDay).format('YYYY-MM-DD');
+    lastDay = moment(lastDay).format('YYYY-MM-DD');
+
     let sub1 = this._service.getOverallInfo();
     let sub2 = this._service.getRoomsDetail();
-    let sub3 = this._service.getMonthlyGross('2017-06-01', '2017-06-25');
+    let sub3 = this._service.getMonthlyGross(firstDay, lastDay);
 
     Observable.forkJoin(sub1, sub2, sub3).subscribe(
       (res: any) => {
@@ -245,6 +252,9 @@ export class MockupComponent {
             scaleLabel: {
                 display: true,
                 labelString: 'Value'
+            },
+            ticks: {
+              min: 0
             }
           }]
         }
