@@ -111,18 +111,18 @@ export class MockupComponent {
         ],
       },
       options: {
-          responsive: true,
-          legend: {
-              position: 'top',
-          },
-          title: {
-              display: true,
-              text: '预测营收: ￥' + data['Ad_AllDebit']
-          },
-          animation: {
-              animateScale: true,
-              animateRotate: true
-          }
+        responsive: true,
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: '预测营收: ￥' + data['Ad_AllDebit']
+        },
+        animation: {
+            animateScale: true,
+            animateRotate: true
+        }
       }
     };
   }
@@ -214,7 +214,8 @@ export class MockupComponent {
       chartData[5].data.push(val['AllCredit']
                           - val['StoreCredit']
                           - val['MebStoreCredit']
-                          - val['MoneyCredit']);  //其他
+                          - val['MoneyCredit']
+                          - val['BankCardCredit']);  //其他
       chartData[6].data.push(val['AllCredit']);  //小计
     });
 
