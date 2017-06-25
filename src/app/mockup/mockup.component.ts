@@ -245,14 +245,14 @@ export class MockupComponent {
             display: true,
             scaleLabel: {
                 display: true,
-                labelString: 'Month'
+                labelString: '当月日期'
             }
           }],
           yAxes: [{
             display: true,
             scaleLabel: {
                 display: true,
-                labelString: 'Value'
+                labelString: '营业收入（￥）'
             },
             ticks: {
               min: 0
