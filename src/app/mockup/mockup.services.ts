@@ -42,5 +42,19 @@ export class MockupServices {
                     .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
+  /**
+   * base on input get monthly gross income
+   * @param accdatebegin [string] format: YYYY-MM-DD
+   * @param accdateend [string] format: YYYY-MM-DD
+   */
+  public getMonthlyGross(accdatebegin: string, accdateend: string) {
+    let url = 'http://pmsapi.yaduo.com:8000/api/QueryBusinessIncomeStatistics?isbusinessdaysummary=1&pageno=1&pagesize=92&chainid=310006&userid=4325&shift=a&timespan=1498416705218&token=cf1ede8ead01dc9442f32f599be8aef0520fd6c6&sign=10166bea409e4c19ca4380beb77571306cc94538&rand=657&_=1498416239313'
+    let params = '&accdatebegin=' + accdatebegin
+                 + '&accdateend=' + accdateend;
+
+    return this.http.get(url + params)
+                    .map(res => res.json())
+                    .catch((error: any) => Observable.throw(error || 'Service Error'));
+  }
 }
 

@@ -6,6 +6,8 @@ import { defaultColors } from '../components/chart.colors';  // chartjs color
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 
+declare var moment: any;
+
 @Component({
   selector: 'mockup-cmp',
   templateUrl: './mockup.component.html'
@@ -27,6 +29,7 @@ export class MockupComponent {
     this.config = {
       donut: undefined, // 实时信息汇总
       bar: undefined,   // 实时客房入住率
+      line: undefined
     };
   }
 
@@ -42,8 +45,9 @@ export class MockupComponent {
     // console.log(result);
     let sub1 = this._service.getOverallInfo();
     let sub2 = this._service.getRoomsDetail();
+    let sub3 = this._service.getMonthlyGross('2017-06-01', '2017-06-25');
 
-    Observable.forkJoin(sub1, sub2).subscribe(
+    Observable.forkJoin(sub1, sub2, sub3).subscribe(
       (res: any) => {
         this.updateData(res);
       },
@@ -60,6 +64,7 @@ export class MockupComponent {
   public updateData(res: any) {
     this.overAllData = res[0].hasOwnProperty('Data') ? res[0].Data : undefined;
     this.mainStatus = res[1].hasOwnProperty('Data') ? res[1].Data : undefined;
+    let monthlyGrossData = res[2].hasOwnProperty('Data') ? res[2].Data.DataSet : undefined;
 
     // set overall object value
     this.totalInfo['Ad_DepFolio'] = this.overAllData['Ad_DepFolio'];  // 今日预离
@@ -70,6 +75,7 @@ export class MockupComponent {
 
     this.initDonutChart(this.totalInfo);  // 实时信息汇总图标
     this.initBarChart(this.mainStatus);   // 实时客房入住率图标
+    this.initMonthGrossChart(monthlyGrossData); // 当月营业收入统计
     this.isLoading = false;
   }
 
@@ -173,5 +179,77 @@ export class MockupComponent {
     };
   }
 
+  public initMonthGrossChart(data: any) {
+    let labels = [], chartData = [];
+    let labelArr = ['净房费', '现金', '银行卡', '储值结算', '礼金券', '其他', '小计'];
+
+    data.reverse(); //backward data
+
+    // init chart data includes: 净房费,现金,银行卡,储值结算,礼金券,其他,小计
+    for (let i = 0; i < 7; i++) {
+      chartData.push({
+        label: labelArr[i],
+        backgroundColor: this.colors[i],
+        borderColor: this.colors[i],
+        fill: false,
+        data: []
+      });
+    }
+
+    // get x axis labels
+    data.map((val, i) => {
+      labels.push(moment(val['CreateAccDate']).format('MM-DD'));
+      chartData[0].data.push(val['RoomAccIncomeDebit']);  //净房费
+      chartData[1].data.push(val['MoneyCredit']);  //现金
+      chartData[2].data.push(val['BankCardCredit']);  //银行卡
+      chartData[3].data.push(val['MebStoreCredit']);  //储值结算
+      chartData[4].data.push(val['StoreCredit']);  //礼金券
+      chartData[5].data.push(val['AllCredit']
+                          - val['StoreCredit']
+                          - val['MebStoreCredit']
+                          - val['MoneyCredit']);  //其他
+      chartData[6].data.push(val['AllCredit']);  //小计
+    });
+
+    // config line chart
+    this.config.line = {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: chartData
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: '当月营业收入统计表'
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+                display: true,
+                labelString: 'Month'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+                display: true,
+                labelString: 'Value'
+            }
+          }]
+        }
+      }
+    };
+  }
 }
 

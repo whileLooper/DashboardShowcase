@@ -1,9 +1,9 @@
 <h1>秀沿路<small>（亚朵）</small></h1>
 <div class="row text-xs-center" *ngIf="!isLoading">
-    <!--donut chart 实时信息汇总-->
-    <div class="col-xs-12 col-md-4">
-        <div style="width:100%">
-            <canvas chartjs-chart [config]="config.donut"></canvas>
+    <!--line chart 当月营业收入统计表-->
+    <div class="col-xs-12 col-md-12">
+        <div style="width: 100%">
+            <canvas chartjs-chart [config]="config.line"></canvas>
         </div>
     </div>
 
@@ -13,4 +13,12 @@
             <canvas chartjs-chart [config]="config.bar"></canvas>
         </div>
     </div>
+
+    <!--donut chart 实时信息汇总-->
+    <div class="col-xs-12 col-md-4">
+        <div style="width:100%">
+            <canvas chartjs-chart [config]="config.donut"></canvas>
+        </div>
+    </div>
+
 </div>
