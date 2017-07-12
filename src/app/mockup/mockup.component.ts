@@ -20,8 +20,9 @@ export class MockupComponent {
   mainStatus: any;
 
   totalInfo: any;
-
+  monthArr: any;  // array contains current year month
   config: any;  // donut chart config
+  sub3: any;    // subscription 3
 
   constructor(private _service: MockupServices) {
     this.isLoading = true;
@@ -35,6 +36,7 @@ export class MockupComponent {
 
   ngOnInit(): void {
     this.getOverallInfo();
+    this.getMonthArr();
   }
 
   /**
@@ -52,14 +54,20 @@ export class MockupComponent {
 
     let sub1 = this._service.getOverallInfo();
     let sub2 = this._service.getRoomsDetail();
-    let sub3 = this._service.getMonthlyGross(firstDay, lastDay);
 
-    Observable.forkJoin(sub1, sub2, sub3).subscribe(
+    Observable.forkJoin(sub1, sub2).subscribe(
       (res: any) => {
         this.updateData(res);
       },
       (err: any) => {
         console.error('访问链接信息报错');
+      }
+    );
+
+    this.sub3 = this._service.getMonthlyGross(firstDay, lastDay).subscribe(
+      (res: any) => {
+        let monthlyGrossData = res.hasOwnProperty('Data') ? res.Data.DataSet : undefined;
+        this.initMonthGrossChart(monthlyGrossData); // 当月营业收入统计
       }
     );
   }
@@ -71,7 +79,6 @@ export class MockupComponent {
   public updateData(res: any) {
     this.overAllData = res[0].hasOwnProperty('Data') ? res[0].Data : undefined;
     this.mainStatus = res[1].hasOwnProperty('Data') ? res[1].Data : undefined;
-    let monthlyGrossData = res[2].hasOwnProperty('Data') ? res[2].Data.DataSet : undefined;
 
     // set overall object value
     this.totalInfo['Ad_DepFolio'] = this.overAllData['Ad_DepFolio'];  // 今日预离
@@ -82,8 +89,6 @@ export class MockupComponent {
 
     this.initDonutChart(this.totalInfo);  // 实时信息汇总图标
     this.initBarChart(this.mainStatus);   // 实时客房入住率图标
-    this.initMonthGrossChart(monthlyGrossData); // 当月营业收入统计
-    this.isLoading = false;
   }
 
   /**
@@ -125,6 +130,7 @@ export class MockupComponent {
         }
       }
     };
+    this.isLoading = false;
   }
 
   public initBarChart(data: any) {
@@ -184,6 +190,7 @@ export class MockupComponent {
         }
       }
     };
+    this.isLoading = false;
   }
 
   public initMonthGrossChart(data: any) {
@@ -261,6 +268,41 @@ export class MockupComponent {
         }
       }
     };
+    this.isLoading = false;
+  }
+
+  /**
+   * return a array contains current year month
+   */
+  public getMonthArr() {
+
+    let totalMonth = [ '一月', '二月', '三月', '四月', '五月', '六月',
+      '七月', '八月', '九月', '十月', '十一月', '十二月' ];
+
+    let index = new Date().getMonth();
+
+    return totalMonth.splice(0, index + 1);
+  }
+
+  public submitMonth(index: number)  {
+    this.isLoading = true;
+    let date = new Date();
+
+    let y = date.getFullYear();
+    let m = index === date.getMonth() ? date.getMonth() : index;
+    let firstDay = moment(new Date(y, m, 1)).format('YYYY-MM-DD');
+    let lastDay = moment(new Date(y, m + 1, 0)).format('YYYY-MM-DD');
+
+    // make a new subscription
+    if (this.sub3) {
+      this.sub3.unsubscribe();
+      this.sub3 = this._service.getMonthlyGross(firstDay, lastDay).subscribe(
+        (res: any) => {
+          let monthlyGrossData = res.hasOwnProperty('Data') ? res.Data.DataSet : undefined;
+          this.initMonthGrossChart(monthlyGrossData); // 当月营业收入统计
+        }
+      );
+    }
   }
 }
 

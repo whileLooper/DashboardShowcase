@@ -1,24 +1,42 @@
 <h1>秀沿路<small>（亚朵）</small></h1>
 <div class="row text-xs-center" *ngIf="!isLoading">
     <!--line chart 当月营业收入统计表-->
-    <div class="col-xs-12 col-md-12">
+
+    <div class="col-12">
+        <div class="pull-left">
+            <div class="btn-group" dropdown>
+                <button id="dropdown-btn-one" class="btn btn-danger" dropdownToggle>
+                    &nbsp; 点击选择月份 &nbsp;
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <ul dropdownMenu role="menu" aria-labelledby="dropdown-btn-one">
+                    <li role="menuitem" *ngFor="let month of getMonthArr(); let i = index">
+                        <a class="dropdown-item" href="#" (click)="submitMonth(i)">{{month}}</a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li role="menuitem">
+                        <a class="dropdown-item" href="#" (click)="submitMonth(getMonthArr().length - 1)">当前月</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div style="width: 100%">
             <canvas chartjs-chart [config]="config.line"></canvas>
         </div>
     </div>
 
     <!--bar chart 实时客房入住率-->
-    <div class="col-xs-12 col-md-8">
+    <!--<div class="col-md-8">
         <div style="width:100%; height:100%">
             <canvas chartjs-chart [config]="config.bar"></canvas>
         </div>
-    </div>
+    </div>-->
 
     <!--donut chart 实时信息汇总-->
-    <div class="col-xs-12 col-md-4">
+    <!--<div class="col-md-4 offset-sm-2 col-sm-8">
         <div style="width:100%">
             <canvas chartjs-chart [config]="config.donut"></canvas>
         </div>
-    </div>
+    </div>-->
 
 </div>

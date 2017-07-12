@@ -7,6 +7,9 @@ import { ChartjsModule } from '../components/chartjs/index';
 import { MockupServices } from './mockup.services';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+// style module
+import { ButtonsModule, DropdownModule } from 'ng2-bootstrap';
+
 export const routes = [
   {path: '', component: MockupComponent, pathMatch: 'full'}
 ];
@@ -20,7 +23,9 @@ export const routes = [
     CommonModule,
     ChartjsModule,
     RouterModule.forChild(routes),
-    JsonpModule
+    JsonpModule,
+    ButtonsModule.forRoot(),
+    DropdownModule.forRoot()
   ],
   providers: [
     MockupServices
