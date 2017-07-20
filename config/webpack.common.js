@@ -264,6 +264,7 @@ module.exports = function(options) {
         Skycons: 'skycons/skycons',
         Dropzone: 'dropzone',
         Chart: 'chart.js',
+        Highcharts: 'highcharts'
       }),
 
       /*

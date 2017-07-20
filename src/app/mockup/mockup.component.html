@@ -1,4 +1,4 @@
-<h1>秀沿路<small>（亚朵）</small></h1>
+<h1>亚朵<small>（秀沿路）</small></h1>
 <div class="row text-xs-center" *ngIf="!isLoading">
     <!--line chart 当月营业收入统计表-->
 
@@ -23,6 +23,8 @@
         <div style="width: 100%">
             <canvas chartjs-chart [config]="config.line"></canvas>
         </div>
+
+        <div high-chart [options]="highchartsOptions" *ngIf="!isLoading"></div>
     </div>
 
     <!--bar chart 实时客房入住率-->

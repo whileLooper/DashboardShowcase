@@ -24,6 +24,8 @@ export class MockupComponent {
   config: any;  // donut chart config
   sub3: any;    // subscription 3
 
+  highchartsOptions: any; // highcharts options
+
   constructor(private _service: MockupServices) {
     this.isLoading = true;
     this.totalInfo = {};
@@ -268,6 +270,8 @@ export class MockupComponent {
         }
       }
     };
+
+    this.highchartsOptions = this.getHighchartsOptions(labels, chartData);
     this.isLoading = false;
   }
 
@@ -303,6 +307,28 @@ export class MockupComponent {
         }
       );
     }
+  }
+
+  public getHighchartsOptions(labels: any, data: any) {
+    console.log(data);
+    let tempSeries = [];
+    data.forEach(val => {
+      tempSeries.push({
+        name: val.label,
+        data: val.data,
+        type: 'line'
+      });
+    });
+
+    return {
+      title: {
+        text: '当月营收统计表'
+      },
+      xAxis: {
+        categories: labels
+      },
+      series: tempSeries
+    };
   }
 }
 
